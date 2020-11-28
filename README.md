@@ -1,2 +1,2 @@
-# credit_parser
-Web scraping ycombinator news feed.
+# web_scraper
+Web scraping articles from ycombinator news feed and saving in mongo database.
