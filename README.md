@@ -1,2 +1,2 @@
 # credit_parser
-Web scraping credit card information.
+Web scraping ycombinator news feed.
