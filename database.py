@@ -30,5 +30,8 @@ for item in range(0, len(titles)-1):
 
     collection.insert_one(data)
 
-# Sort articles by scores in descending order
-sorted_articles = collection.find().sort("score", -1)
+# Store in order of most popular articles
+sorted_articles = [list(article.values()) for article in collection.find().sort("score", -1)]
+
+# Grab 3 most popular sites
+popular_sites = sorted_articles[:3]
