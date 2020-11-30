@@ -33,5 +33,7 @@ for item in range(0, len(titles)-1):
 # Store in order of most popular articles
 sorted_articles = [list(article.values()) for article in collection.find().sort("score", -1)]
 
-# Grab 3 most popular sites
-popular_sites = sorted_articles[:3]
+# Write data to a file
+with open("email.txt", 'w') as f:
+    for article in sorted_articles[:3]:
+        f.write(article[1] + "\n" + article[2] + "\n\n")
