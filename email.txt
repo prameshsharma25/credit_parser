@@ -1,9 +1,12 @@
-Show HN: I Rebuilt MySpace from 2007
-https://spacehey.com/?ref=hn
+Netscape and Sun Announce JavaScript (1995) 
+ https://web.archive.org/web/20070916144913/http://wp.netscape.com/newsref/pr/newsrelease67.html 
+ 638 
 
-Remote control truck with remote control gun, self destructed after attack
-https://twitter.com/l4stewar/status/1333094707954651137
+About Google's approach to research publication – Jeff Dean 
+ https://docs.google.com/document/d/1f2kYWDXwhzYnq8ebVtuk9CqQqz7ScqxhSIxeYGrWjK0/preview?pru=AAABdlNwLxs*PKCOHN-Ks0PI5nFrljenMg 
+ 414 
 
-Gallery-dl – download images from several image hosting sites
-https://github.com/mikf/gallery-dl
+Billionaires Build 
+ http://paulgraham.com/ace.html 
+ 344 
 
