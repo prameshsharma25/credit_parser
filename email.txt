@@ -1,12 +1,12 @@
-Netscape and Sun Announce JavaScript (1995) 
- https://web.archive.org/web/20070916144913/http://wp.netscape.com/newsref/pr/newsrelease67.html 
- 638 
+Title: 72% of smart TVs and 46% of game consoles hardcode DNS settings 
+ Link: https://arxiv.org/abs/2001.08288 
+ Points: 586 
 
-About Google's approach to research publication – Jeff Dean 
- https://docs.google.com/document/d/1f2kYWDXwhzYnq8ebVtuk9CqQqz7ScqxhSIxeYGrWjK0/preview?pru=AAABdlNwLxs*PKCOHN-Ks0PI5nFrljenMg 
- 414 
+Title: Radicle: A peer-to-peer alternative to GitHub 
+ Link: http://radicle.xyz#/beta 
+ Points: 458 
 
-Billionaires Build 
- http://paulgraham.com/ace.html 
- 344 
+Title: WebThings Gateway 1.0 
+ Link: https://hacks.mozilla.org/2020/12/flying-the-nest-webthings-gateway-1-0/ 
+ Points: 417 
 
