@@ -12,57 +12,43 @@ class Scraper:
         self.page = requests.get(self.url)       
         self.soup = BeautifulSoup(self.page.text, "lxml")
 
-    def scrape_article_titles(self) -> List[str]:
-        """Scrapes articles from Ycombinator
-
-        """
-        titles = [title.next_element for title in self.soup.find_all("a", "storylink")]
-        return titles
-
-    def scrape_article_links(self) -> List[str]:
+    def scrape_article_data(self) -> List[Dict[str, str]]:
+        articles = []
         links  = [link['href'] for link in self.soup.find_all("a", "storylink")]
-        return links
-
-    def scrape_article_scores(self) -> List[int]:
-        scores = []
+        titles = [title.next_element for title in self.soup.find_all("a", "storylink")]
         temp_num = ""
+        index = 0
         for score in self.soup.find_all("span", "score"):
             temp_score = score.next_element
             for char in temp_score:
                 if char.isdigit():
                     temp_num += char
                 else:
-                    scores.append(int(temp_num))
+                    articles.append({
+                        "title": titles[index],
+                        "link": links[index],
+                        "score": int(temp_num)
+                    })
                     temp_num = ""
+                    index += 1
                     break
+        
+        return articles
 
-        return scores
-
-    def store_articles_in_database(self) -> List[Dict[str, str]]:
+    def store_articles_in_database(self, articles: List[Dict[str, str]]) -> List[Dict[str, str]]:
         client = MongoClient()
         db = client.scraped_database
-
-        #Store scraped data
-        titles = self.scrape_article_titles()
-        links  = self.scrape_article_links()
-        scores = self.scrape_article_scores()
 
         # Create collection
         collection = db.articles
 
-        # Delete collection data
+        # Delete any lingering data
         if collection.count_documents({}) > 0:
             collection.delete_many({})
 
         # Save scraped data in db
-        for item in range(len(titles)-1):
-            data = {
-            "title": titles[item],
-            "link": links[item],
-            "score": scores[item]
-            }
-
-            collection.insert_one(data)
+        for article in articles:
+            collection.insert_one(article)
         
         return collection
 
@@ -72,15 +58,17 @@ class Scraper:
     def write_articles_to_file(self, sorted_articles: List[Dict[str, str]]) -> None:
         # Write data to a file
         with open("email.txt", 'w') as f:
-            for article in sorted_articles[:3]:
-                f.write(f"Title: {article[1]} \n Link: {article[2]} \n Points: {article[3]} \n\n")
+            for article in sorted_articles[0:4]:
+                f.write(f"Title: {article[1]} \nLink: {article[2]} \nPoints: {article[3]} \n\n")
 
     def send_articles_in_email(self) -> None:
         port = 587
         smtp_server = "smtp.gmail.com"
         sender_email = "prameshsharma256@gmail.com"
-        receiver_email = "prameshsharma256@gmail.com"
-        password = getpass.getpass(prompt="Password: ")
+        receiver_email = "prameshsharma25@gmail.com"
+        password = "agQp3q\"H5JN`F>J*>}*~"
+
+        #password = getpass.getpass(prompt="Password: ")
         
         with open("email.txt", "r") as f:
             message = f.read()
@@ -93,7 +81,8 @@ class Scraper:
 
 def main() -> None:
     scraper = Scraper()
-    current_collection = scraper.store_articles_in_database()
+    data = scraper.scrape_article_data()
+    current_collection = scraper.store_articles_in_database(data)
     sorted_articles = scraper.sort_articles_by_score(current_collection)
     scraper.write_articles_to_file(sorted_articles)
     scraper.send_articles_in_email()
