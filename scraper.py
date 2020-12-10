@@ -1,6 +1,8 @@
 from bs4 import BeautifulSoup
 from pymongo import MongoClient
 from typing import List, Dict
+from datetime import datetime
+from apscheduler.schedulers.blocking import BlockingScheduler
 import requests
 import smtplib
 import ssl
@@ -42,15 +44,11 @@ class Scraper:
         """Stores article titles, links, and scores in mongo database."""
         client = MongoClient()
         db = client.scraped_database
-
-        # Create collection
         collection = db.articles
 
-        # Delete any lingering data
         if collection.count_documents({}) > 0:
             collection.delete_many({})
-
-        # Save scraped data in db
+            
         for article in articles:
             collection.insert_one(article)
         
@@ -72,7 +70,8 @@ class Scraper:
         smtp_server = "smtp.gmail.com"
         sender_email = "prameshsharma256@gmail.com"
         receiver_email = "prameshsharma25@gmail.com"
-        password = getpass.getpass(prompt="Password: ")
+        #password = getpass.getpass(prompt="Password: ")
+        password = "agQp3q\"H5JN`F>J*>}*~"
         
         with open("email.txt", "r") as f:
             message = f.read()
@@ -83,6 +82,12 @@ class Scraper:
             server.login(sender_email, password)
             server.sendmail(sender_email, receiver_email, message.encode("utf-8"))
 
+    def run_cron_jobs(self) -> None:
+        """Runs the web scraper every morning."""
+        schedule = BlockingScheduler()
+        schedule.add_job(main, 'cron', day_of_week='0-6', hour='8')
+        schedule.start()
+
 def main() -> None:
     """Functions of Scraper class are called inside main."""
     scraper = Scraper()
@@ -91,6 +96,7 @@ def main() -> None:
     sorted_articles = scraper.sort_articles_by_score(current_collection)
     scraper.write_articles_to_file(sorted_articles)
     scraper.send_articles_in_email()
+    scraper.run_cron_jobs()
 
 if __name__ == "__main__":
     main()
