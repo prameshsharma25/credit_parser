@@ -1,16 +1,16 @@
-Title: Monopoly Technology Platforms Are Colonizing Education 
-Link: https://instituteforpubliceducation.org/monopoly-technology-platforms-are-colonizing-education/ 
-Points: 366 
+Title: FTC Sues Facebook for Illegal Monopolization 
+Link: https://www.ftc.gov/news-events/press-releases/2020/12/ftc-sues-facebook-illegal-monopolization 
+Points: 912 
 
-Title: Every Model Learned by Gradient Descent Is Approximately a Kernel Machine 
-Link: https://arxiv.org/abs/2012.00152 
-Points: 290 
+Title: YouTube to remove content that alleges widespread election fraud 
+Link: https://blog.youtube/news-and-events/supporting-the-2020-us-election 
+Points: 559 
 
-Title: EmacsConf 2020 Talks 
-Link: https://emacsconf.org/2020/talks/ 
-Points: 258 
+Title: EU countries team up for semiconductor push 
+Link: https://www.reuters.com/article/eu-tech-semiconductor-idUSKBN28H1HV 
+Points: 527 
 
-Title: When Good Patterns Go Bad: The False Positive Regex 
-Link: https://blog.donbowman.ca/2020/12/04/when-good-patterns-go-bad-the-false-positive-regex/ 
-Points: 198 
+Title: Pandemic Villains: Robinhood 
+Link: https://taibbi.substack.com/p/pandemic-villains-robinhood 
+Points: 424 
 
